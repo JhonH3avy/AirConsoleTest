@@ -1,0 +1,177 @@
+fileFormatVersion: 2
+guid: 5a9816b2b5d61644faee49e2f69cdbd6
+timeCreated: 1509143207
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: camp_Camp_Camp_Fire
+    100002: Camp_Camp_Fire_rope_support_1
+    100004: Camp_Camp_Fire_rope_support_2
+    100006: Camp_Camp_Fire_rope_support_3
+    100008: Camp_Camp_Fire_rope_support_4
+    100010: Camp_Fire_Fire_Woods_Rocks
+    100012: Camp_Fire_Fire_Woods_utensil_and_rope
+    100014: Camp_Fire_woods_and_ground_Fire_Woods
+    100016: //RootNode
+    100018: Ground
+    400000: camp_Camp_Camp_Fire
+    400002: Camp_Camp_Fire_rope_support_1
+    400004: Camp_Camp_Fire_rope_support_2
+    400006: Camp_Camp_Fire_rope_support_3
+    400008: Camp_Camp_Fire_rope_support_4
+    400010: Camp_Fire_Fire_Woods_Rocks
+    400012: Camp_Fire_Fire_Woods_utensil_and_rope
+    400014: Camp_Fire_woods_and_ground_Fire_Woods
+    400016: //RootNode
+    400018: Ground
+    2300000: camp_Camp_Camp_Fire
+    2300002: Camp_Camp_Fire_rope_support_1
+    2300004: Camp_Camp_Fire_rope_support_2
+    2300006: Camp_Camp_Fire_rope_support_3
+    2300008: Camp_Camp_Fire_rope_support_4
+    2300010: Camp_Fire_Fire_Woods_Rocks
+    2300012: Camp_Fire_Fire_Woods_utensil_and_rope
+    2300014: Camp_Fire_woods_and_ground_Fire_Woods
+    2300016: Ground
+    3300000: camp_Camp_Camp_Fire
+    3300002: Camp_Camp_Fire_rope_support_1
+    3300004: Camp_Camp_Fire_rope_support_2
+    3300006: Camp_Camp_Fire_rope_support_3
+    3300008: Camp_Camp_Fire_rope_support_4
+    3300010: Camp_Fire_Fire_Woods_Rocks
+    3300012: Camp_Fire_Fire_Woods_utensil_and_rope
+    3300014: Camp_Fire_woods_and_ground_Fire_Woods
+    3300016: Ground
+    4300000: camp_Camp_Camp_Fire
+    4300002: Camp_Camp_Fire_rope_support_1
+    4300004: Camp_Camp_Fire_rope_support_2
+    4300006: Camp_Camp_Fire_rope_support_3
+    4300008: Camp_Camp_Fire_rope_support_4
+    4300010: Camp_Fire_Fire_Woods_Rocks
+    4300012: Camp_Fire_Fire_Woods_utensil_and_rope
+    4300014: Camp_Fire_woods_and_ground_Fire_Woods
+    4300016: Ground
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Camp_Camp_Fire_rope_support_1Mat
+    second: {fileID: 2100000, guid: 1668273da3ff068458c064980290d5ac, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Camp_Camp_Fire_rope_support_2Mat
+    second: {fileID: 2100000, guid: 7852cc6c05552274f81c3876050d5eab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Camp_Camp_Fire_rope_support_3Mat
+    second: {fileID: 2100000, guid: 6bdb4c927c5f95c438de1ed777184ced, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Camp_Camp_Fire_rope_support_4Mat
+    second: {fileID: 2100000, guid: 823650fad59b3a54a8b52bc54480de99, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Camp_Fire_Fire_Woods_RocksMat
+    second: {fileID: 2100000, guid: c470e84105cf1cd409e6a9f99bd7c3c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Camp_Fire_Fire_Woods_utensil_and_ropeMat
+    second: {fileID: 2100000, guid: 05ab8bb5640acb54ab83ae8a3d1517bb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Camp_Fire_woods_and_ground_Fire_WoodsMat
+    second: {fileID: 2100000, guid: 439d0af83945b224589d98bf55c49629, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: GroundMat
+    second: {fileID: 2100000, guid: d0fa6e312c5b4a543b6fed6aef13b516, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: camp_Camp_Camp_FireMat
+    second: {fileID: 2100000, guid: 64cb5ab8698c8a740a37ba1ed8fc48d8, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
