@@ -1,0 +1,101 @@
+body {
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+
+  .view {
+    position: relative;
+    background-color: #3b3b3b;
+    text-align: center;
+    font-family: sans-serif;
+    display: none;
+    width: 100%;
+    height: 100%;
+    max-width: 720px;
+    max-height: 360px;
+  }
+
+  .section-right {
+    margin: auto;
+  }
+
+  #dpad {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    left: 0%;
+    top: 0%;
+  }
+
+  .button-300-150 {
+    position: absolute;
+    height: 50%;
+    width: 40%;
+    right: 0px;
+  }  
+
+  .button-150-300 {
+      display: inline-block;
+      position: absolute;
+      height: 50%;
+      width: 40%;
+      right: 0px;
+  }
+
+  #a {
+    bottom: 0%;
+    background-position: 50% 0%;
+  }
+
+  .button-a-text {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    padding-bottom: 50%;
+    height: 0%;
+  }
+  
+  #b {
+    top: 0%;
+    background-position: 50% 100%;
+  }
+
+  .button-b-text {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    padding-bottom: 50%;
+    height: 0%;
+  }
+
+  #c {
+    left: 0%;
+    background-position: 0% 50%;
+  }
+
+  .button-c-text {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    padding-left: 50%;
+    height: 0%;
+  }
+
+  #d {
+    left: 0%;
+    background-position: 50% 100%;
+  }
+
+  .button-d-text {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    padding-left: 50%;
+    height: 0%;
+  }

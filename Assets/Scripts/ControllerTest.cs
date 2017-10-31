@@ -52,6 +52,14 @@ public class ControllerTest : MonoBehaviour
 		var controllerIds = AirConsole.instance.GetControllerDeviceIds();
 		foreach(var device_id in controllerIds)
 		{
+			if (AirConsole.instance.ConvertDeviceIdToPlayerNumber(device_id) % 2 == 0)
+			{
+				AirConsole.instance.Message(device_id, new {view = "view-0"});
+			}
+			else
+			{
+				AirConsole.instance.Message(device_id, new {view = "view-1"});
+			}
 			Debug.Log("Connected device:" + device_id + " and player number:" + AirConsole.instance.ConvertDeviceIdToPlayerNumber(device_id));
 		}
 	}
