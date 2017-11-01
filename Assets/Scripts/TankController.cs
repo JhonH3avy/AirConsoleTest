@@ -17,9 +17,20 @@ public class TankController : MonoBehaviour
 	private int _lives = 3;
 	private bool _isTurningBody = false;
 	private float _turnDirection;
-	private void FixedUpdate() {
-		if (_isTurningBody) {
+	private float _currentSpeed = 0;
+
+	private bool _isAccelerating = false;
+
+	private void FixedUpdate()
+	{
+		if (_isTurningBody) 
+		{
         	_tankRigidbody.AddTorque(transform.up * _turnSpeed * _turnDirection, ForceMode.VelocityChange);
+		}
+		if (_isAccelerating)
+		{
+			var desiredPosition = transform.position + transform.forward * _currentSpeed * _movementSpeed;
+			_tankRigidbody.MovePosition(desiredPosition);
 		}
     }
 
@@ -30,14 +41,30 @@ public class TankController : MonoBehaviour
 
 	public void Accelerate(float speed)
 	{
-		var desiredPosition = transform.position + transform.forward * speed * _movementSpeed;
-		_tankRigidbody.MovePosition(desiredPosition);
+		if (speed == _currentSpeed)
+		{
+			_isAccelerating = false;
+			_currentSpeed = 0;
+		}
+		else
+		{
+			_isAccelerating = true;
+			_currentSpeed = speed;
+		}
 	}
 
 	public void Turn(float speed)
 	{
-		_isTurningBody = speed != 0;
-		_turnDirection = speed;
+		if (speed == _turnDirection)
+		{
+			_isTurningBody = false;
+			_turnDirection = 0;
+		}
+		else
+		{
+			_isTurningBody = true;
+			_turnDirection = speed;
+		}
 	}
 
 	public void TurnCannon(float speed)

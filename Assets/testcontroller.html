@@ -2,8 +2,6 @@
 <html>
     <head>
       <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
-      <script type="text/javascript" src="airconsole-controls/dpad/dpad.js"></script>
-      <link rel="stylesheet" href="airconsole-controls/dpad/dpad.css">
       <script type="text/javascript" src="airconsole-controls/button/button.js"></script>
       <link rel="stylesheet" href="airconsole-controls/button/button.css">
       <link rel="stylesheet" href="controller/controller.css">
@@ -11,8 +9,8 @@
       
     </head>
     <body>
-        <div id="view-0" class="view" style="display: flex;">
-            <div id="view-0-section-0" class="section " style="height: 100%;">
+        <!--<div id="player-a" class="view">
+            <div id="player-a-section-left" class="section-left horizontal">
                 <div id="player-a-accel" class="button-300-150 button-element element">
                     <div class="button-text">Accel</div>
                 </div>
@@ -20,37 +18,55 @@
                     <div class="button-text">Reverse</div>
                 </div>
             </div>
-            <div id="view-0-section-1" class="section horizontal " style="height: 100%;">
-                <div id="player-a-cannon-left" class="button-150-300 button-element element">
+            <div id="player-a-section-right" class="section-right horizontal">
+                <div id="player-a-cannon-left" class="button-150-300 button-element element horizontal">
                     <div class="button-text">Left</div>
                 </div>
-                <div id="player-a-cannon-right" class="button-150-300 button-element element">
+                <div id="player-a-cannon-right" class="button-150-300 button-element element horizontal">
                     <div class="button-text">Right</div>
                 </div>
             </div>
         </div>
-        <div id="view-1" class="view" style="display: none;">
-            <div id="view-1-section-0" class="section horizontal " style="height: 100%;">
-                <div id="player-b-turn-left" class="button-150-300 button-element element">
+        <div id="player-b" class="view">
+            <div id="player-b-section-left" class="section-left horizontal">
+                <div id="player-b-turn-left" class="button-150-300 button-element element horizontal">
                     <div class="button-text">Left</div>
                 </div>
-                <div id="player-b-turn-right" class="button-150-300 button-element element">
+                <div id="player-b-turn-right" class="button-150-300 button-element element horizontal">
                     <div class="button-text">Right</div>
                 </div>
             </div>
-            <div id="view-1-section-1" class="section " style="height: 100%;">
+            <div id="player-b-section-right" class="section-right horizontal">
                 <div id="player-b-shoot" class="button-300-300 button-element element">
-                <div class="button-text">Shoot</div>
+                    <div class="button-text">Shoot</div>
                 </div>
+            </div>
+        </div>-->
+
+        <div id="player-a" class="view">
+            <div class="section-left">
+                <div id="player-a-section-left" class="floating-box-left"><p>Turn Left Cannon</p></div>
+                <div id="player-a-cannon-right" class="floating-box"><p>Turn Right Cannon</p></div>
+            </div>
+            
+            <div class="section">
+                <div id="player-a-accel" class="non-floating-box"><p>Accel</p></div>
+                <div id="player-a-reverse" class="non-floating-box"><p>Reverse</p></div>
+            </div>
         </div>
+
+        <div id="player-b" class="view">
+            
+            <div class="section-left">
+                <div id="player-b-turn-left" class="floating-box-left"><p>Turn Left Tank</p></div>
+                <div id="player-b-turn-right" class="floating-box"><p>Turn Right Tank</p></div>
+            </div>
+            
+            <div class="section">
+                <div id="player-b-shoot" class="floating-box-lone">Shoot</div>
+            </div>
         </div>
-        
-        
-        <script type="text/javascript">
-          //var ctrl_data = '{"orientation":"landscape","selected_view_id":"view-0","views":[{"id":"view-0","sections":[{"id":"view-0-section-0","elements":[{"id":"player-a-accel","key":"button","name":"Button","tmpl":"button","constructor_fn":"ButtonElement","options":{"constructor_args":{},"attr_id":"view-0-section-0-element-0","css_classes":"button-300-150","view_action":{"target":null,"view_id":null},"label":"Accel","send_onrelease":false,"message_data":[{"key":"vertical","value":"1"}]}},{"id":"player-a-reverse","key":"button","name":"Button","tmpl":"button","constructor_fn":"ButtonElement","options":{"constructor_args":{},"attr_id":"view-0-section-0-element-1","css_classes":"button-300-150","view_action":{"target":null,"view_id":null},"label":"Reverse","send_onrelease":false,"message_data":[{"key":"vertical","value":"-1"}]}}],"classes":[]},{"id":"view-0-section-1","elements":[{"id":"player-a-cannon-left","key":"button","name":"Button","tmpl":"button","constructor_fn":"ButtonElement","options":{"constructor_args":{},"attr_id":"view-0-section-1-element-0","css_classes":"button-150-300","view_action":{"target":null,"view_id":null},"label":"Left","send_onrelease":false,"message_data":[{"key":"cannon","value":"-1"}]}},{"id":"player-a-cannon-right","key":"button","name":"Button","tmpl":"button","constructor_fn":"ButtonElement","options":{"constructor_args":{},"attr_id":"view-0-section-1-element-1","css_classes":"button-150-300","view_action":{"target":null,"view_id":null},"label":"Right","send_onrelease":false,"message_data":[{"key":"cannon","value":"1"}]}}],"classes":["horizontal"]}]},{"id":"view-1","sections":[{"id":"view-1-section-0","elements":[{"id":"player-b-turn-left","key":"button","name":"Button","tmpl":"button","constructor_fn":"ButtonElement","options":{"constructor_args":{},"attr_id":"view-1-section-0-element-0","css_classes":"button-150-300","view_action":{"target":null,"view_id":null},"label":"Left","send_onrelease":false,"message_data":[{"key":"horizontal","value":"-1"}]}},{"id":"player-b-turn-right","key":"button","name":"Button","tmpl":"button","constructor_fn":"ButtonElement","options":{"constructor_args":{},"attr_id":"view-1-section-0-element-1","css_classes":"button-150-300","view_action":{"target":null,"view_id":null},"label":"Right","send_onrelease":false,"message_data":[{"key":"horizontal","value":"1"}]}}],"classes":["horizontal"]},{"id":"view-1-section-1","elements":[{"id":"player-b-shoot","key":"button","name":"Button","tmpl":"button","constructor_fn":"ButtonElement","options":{"constructor_args":{},"attr_id":"view-1-section-1-element-0","css_classes":"button-300-300","view_action":{"target":null,"view_id":null},"label":"Shoot","send_onrelease":false,"message_data":[{"key":"shoot","value":"true"}]}}],"classes":[]}]}]}';
-          var airconsole = new AirConsole();
-        </script>
-        
-        <!--<script type="text/javascript" src="controller/controller.js"></script>-->
+                
+        <script type="text/javascript" src="controller/controller.js"></script>
     </body>
   </html>

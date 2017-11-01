@@ -5,97 +5,112 @@ body {
     user-select: none;
   }
 
-  .view {
+  /*.view {
     position: relative;
     background-color: #3b3b3b;
     text-align: center;
     font-family: sans-serif;
     display: none;
-    width: 100%;
-    height: 100%;
     max-width: 720px;
     max-height: 360px;
   }
 
-  .section-right {
-    margin: auto;
-  }
-
-  #dpad {
-    position: absolute;
+  .section-left .section-right {
+    position: relative;
     width: 50%;
     height: 100%;
+    margin: auto;
+  }
+  .section-left {
     left: 0%;
-    top: 0%;
   }
 
-  .button-300-150 {
-    position: absolute;
-    height: 50%;
-    width: 40%;
-    right: 0px;
-  }  
-
-  .button-150-300 {
-      display: inline-block;
-      position: absolute;
-      height: 50%;
-      width: 40%;
-      right: 0px;
+  .section-right {
+    right: 0%
   }
 
-  #a {
-    bottom: 0%;
-    background-position: 50% 0%;
+  .horizontal {
+    position: inline-block;
   }
 
-  .button-a-text {
-    position: absolute;
+  .button-element {
     left: 0px;
     top: 0px;
     width: 100%;
     padding-bottom: 50%;
     height: 0%;
+  }  
+
+  .element {
+      display: inline-block;
+      height: 50%;
+      width: 50%;
+      right: 0px;
+  }
+
+  #player-a-accel {
+    top: 0%;
+    background-position: 50% 0%;
+  }
+
+  #player-a-accel {
+    bottom: 0%;
+    background-position: 50% 0%;
+  }*/
+
+  .view {
+    border: 3px solid #11AD55; 
+    display: none;
+    width: 100%;
+    height: 100%;
+  }	
+  
+  .section {
+    margin-left: 50%;
+    width: 45%;
+    height: 100%;
+    border: 3px solid #12ff21;         
+  }
+
+  .section-left {
+    position: absolute;
+    width: 45%;
+    height: 100%;
+    border: 3px solid #12ff21;         
   }
   
-  #b {
-    top: 0%;
-    background-position: 50% 100%;
+  
+  .floating-box {
+    margin: auto;
+    margin-left: 50%;
+    width: 45%;
+    height: 100%;
+    border: 3px solid #73AD21;
   }
 
-  .button-b-text {
+  .floating-box-left {
+    text-align: center;
     position: absolute;
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-    padding-bottom: 50%;
-    height: 0%;
+    width: 45%;
+    height: 100%;
+    border: 3px solid #73AD21;
   }
 
-  #c {
-    left: 0%;
-    background-position: 0% 50%;
-  }
-
-  .button-c-text {
+  .floating-box-lone {
     position: absolute;
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-    padding-left: 50%;
-    height: 0%;
+    width: 95%;
+    height: 95%;
+    border: 3px solid #73AD21;
+  }
+  
+  .non-floating-box {
+    display: block;
+    width: 95%;
+    height: 45%;
+    border: 3px solid #A11367;  
   }
 
-  #d {
-    left: 0%;
-    background-position: 50% 100%;
-  }
-
-  .button-d-text {
-    position: absolute;
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-    padding-left: 50%;
-    height: 0%;
+  p {
+    text-align: center;
+    margin-top: 50%;
   }

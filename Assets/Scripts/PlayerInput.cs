@@ -15,6 +15,7 @@ public class PlayerInput : MonoBehaviour
 		}
 		if (Input.GetButtonUp("Vertical"))
 		{			
+			return;
 			_controller.Accelerate(0);
 		}
 		if (Input.GetButton("Horizontal"))
@@ -24,6 +25,7 @@ public class PlayerInput : MonoBehaviour
 		}
 		if (Input.GetButtonUp("Horizontal"))
 		{			
+			return;
 			_controller.Turn(0);
 		}
 		if (Input.GetKey(KeyCode.H))
