@@ -41,7 +41,7 @@ new Button("player-a-cannon-left", {
 
 new Button("player-a-cannon-right", {
     "down": function () {
-        airconsole.message(AirConsole.SCREEN, {"action": "cannon-left"});
+        airconsole.message(AirConsole.SCREEN, {"action": "cannon-right"});
     }
 });
 

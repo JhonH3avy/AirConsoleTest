@@ -13,13 +13,20 @@ public class TankController : MonoBehaviour
 	[SerializeField] private float _movementSpeed = 10f;
 	[SerializeField] private float _turnSpeed = 3f;
 	[SerializeField] private float _turnCannonSpeed = 2.5f;
+    [SerializeField] private float _rateOfFire = 3f;
 
 	private int _lives = 3;
+
+    private float _nextShoot = 0;
+
 	private bool _isTurningBody = false;
-	private float _turnDirection;
+    private bool _isTurningCannon = false;
+    private bool _isAccelerating = false;
+
+    private float _turnDirection = 0;
+    private float _cannonDirection = 0;
 	private float _currentSpeed = 0;
 
-	private bool _isAccelerating = false;
 
 	private void FixedUpdate()
 	{
@@ -34,7 +41,17 @@ public class TankController : MonoBehaviour
 		}
     }
 
-	private void Die()
+    private void Update()
+    {
+        if (_isTurningCannon)
+        {
+            var rotation = _cannonBody.localRotation;
+            var desiredRotation = rotation.eulerAngles + new Vector3(0, _cannonDirection * _turnCannonSpeed * Time.deltaTime, 0);
+            _cannonBody.localEulerAngles = desiredRotation;
+        }
+    }
+
+    private void Die()
 	{
 		gameObject.SetActive(false);
 	}
@@ -69,17 +86,28 @@ public class TankController : MonoBehaviour
 
 	public void TurnCannon(float speed)
 	{
-		var rotation = _cannonBody.localRotation;
-		var desiredRotation = rotation.eulerAngles + new Vector3(0, speed * _turnCannonSpeed, 0);
-		_cannonBody.localEulerAngles = desiredRotation;
+        if (speed == _cannonDirection)
+        {
+            _isTurningCannon = false;
+            _cannonDirection = 0;
+        }
+        else
+        {
+            _isTurningCannon = true;
+            _cannonDirection = speed;
+        }
 	}
 
 	public void Shoot()
 	{
-		var bullet = Instantiate(_bulletPrefab);
-		bullet.transform.position = _muzzle.position;
-		bullet.transform.rotation = _muzzle.rotation;
-		bullet.GetComponent<Bullet>().StartMovement();
+        if (Time.time > _nextShoot)
+        {
+            var bullet = Instantiate(_bulletPrefab);
+            bullet.transform.position = _muzzle.position;
+            bullet.transform.rotation = _muzzle.rotation;
+            bullet.GetComponent<Bullet>().StartMovement();
+            _nextShoot = Time.time + _rateOfFire;
+        }
 	}
 
 	public void Damage()

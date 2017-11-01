@@ -8,32 +8,22 @@ public class PlayerInput : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButton("Vertical"))
+		if (Input.GetButtonDown("Vertical"))
 		{			
 			var speed = Input.GetAxisRaw("Vertical");
 			_controller.Accelerate(speed);
 		}
-		if (Input.GetButtonUp("Vertical"))
-		{			
-			return;
-			_controller.Accelerate(0);
-		}
-		if (Input.GetButton("Horizontal"))
+		if (Input.GetButtonDown("Horizontal"))
 		{			
 			var speed = Input.GetAxisRaw("Horizontal");
 			_controller.Turn(speed);
 		}
-		if (Input.GetButtonUp("Horizontal"))
-		{			
-			return;
-			_controller.Turn(0);
-		}
-		if (Input.GetKey(KeyCode.H))
+		if (Input.GetKeyDown(KeyCode.H))
 		{			
 			var speed = -1;
 			_controller.TurnCannon(speed);
 		}
-		if (Input.GetKey(KeyCode.J))
+		if (Input.GetKeyDown(KeyCode.J))
 		{			
 			var speed = 1;
 			_controller.TurnCannon(speed);

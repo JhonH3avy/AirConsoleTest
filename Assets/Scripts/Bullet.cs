@@ -24,6 +24,7 @@ public class Bullet : MonoBehaviour
 		{
 			var controller = col.transform.GetComponent<TankController>();
 			controller.Damage();
+            Destroy(gameObject);
 		}
 	}
 }

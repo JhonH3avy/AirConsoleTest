@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 114747296781047946}
   m_Layer: 0
   m_Name: Tank
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,7 +176,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 1384f7df77dc555498effbe0110960b6, type: 2}
+  - {fileID: 2100000, guid: 8b96452d490d3654dbf0b8ca35efc74d, type: 2}
   - {fileID: 2100000, guid: 48256df8f0da90a42bc2bb8bff4f580a, type: 2}
   - {fileID: 2100000, guid: a2c96e27cd24885409056990fcb74130, type: 2}
   - {fileID: 2100000, guid: b7dc2b10df2dc644c8cb01f2560c8879, type: 2}
@@ -213,7 +213,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9a7d4535d3699cb42a898ae25324eb6e, type: 2}
+  - {fileID: 2100000, guid: 8b96452d490d3654dbf0b8ca35efc74d, type: 2}
   - {fileID: 2100000, guid: 95ef0f7634707bc4c91afc155de04933, type: 2}
   - {fileID: 2100000, guid: 78f537afcfe0ebc46bbbebe9ed725768, type: 2}
   m_StaticBatchInfo:
@@ -294,4 +294,5 @@ MonoBehaviour:
     type: 2}
   _movementSpeed: 0.3
   _turnSpeed: 0.5
-  _turnCannonSpeed: 2.5
+  _turnCannonSpeed: 25
+  _rateOfFire: 3

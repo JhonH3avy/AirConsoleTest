@@ -2,26 +2,46 @@
 using System.Collections.Generic;
 using NDream.AirConsole;
 using Newtonsoft.Json.Linq;
+using Cinemachine;
 
 public class ControllerTest : MonoBehaviour
 {
-	[SerializeField] private int _maxPlayers = 8;
+    [SerializeField] private int _maxPlayers = 8;
+    [SerializeField] private int _minPlayers = 4;
 
-	private Dictionary<int, TankController> _controllers = new Dictionary<int, TankController>();
+    [SerializeField] private GameObject _tankPrefab;
 
-	private void OnEnable() {
+    [SerializeField] private CinemachineTargetGroup _targetGroup;
+    [SerializeField] private CinemachineVirtualCamera _mainCamera;
+
+    [SerializeField] private Transform[] _spawnPoints;
+    [SerializeField] private Material[] _tankMaterials;
+
+    private List<TankController> _tankControllers = new List<TankController>();
+    private List<CinemachineTargetGroup.Target> _tankTargets = new List<CinemachineTargetGroup.Target>();
+
+	private Dictionary<int, TankController> _controllersDictionary = new Dictionary<int, TankController>();
+
+    private int _connectedDevices = 0;
+
+	private void OnEnable()
+    {
 		AirConsole.instance.onMessage += OnMessage;
 		AirConsole.instance.onConnect += OnConnect;
 		AirConsole.instance.onDisconnect += OnDisconnect;
 	}
 
-	private void OnDisable() {
+	private void OnDisable()
+    {
 		AirConsole.instance.onMessage -= OnMessage;
 		AirConsole.instance.onConnect -= OnConnect;
 		AirConsole.instance.onDisconnect -= OnDisconnect;
-	}
 
-	private void OnMessage(int device_id, JToken data) {
+        _mainCamera.m_Priority = 10;
+    }
+
+	private void OnMessage(int device_id, JToken data)
+    {
 		Debug.Log("From device: " + AirConsole.instance.ConvertDeviceIdToPlayerNumber(device_id) + " message: " + data);
         int active_player = AirConsole.instance.ConvertDeviceIdToPlayerNumber (device_id);
 		if ((string)data["action"] != null && active_player != -1) 
@@ -32,7 +52,7 @@ public class ControllerTest : MonoBehaviour
 
 	private void HandleAction(int playerId, string action)
 	{
-		var controller = _controllers[playerId];
+		var controller = _controllersDictionary[playerId];
 		if (controller == null) return;
 
 		if (action == "accel")
@@ -47,12 +67,33 @@ public class ControllerTest : MonoBehaviour
 		{
 			controller.Shoot();
 		}
-	}
+        if(action == "tank-left")
+        {
+            controller.Turn(-1);
+        }
+        if (action == "tank-right")
+        {
+            controller.Turn(1);
+        }
+        if (action == "cannon-left")
+        {
+            controller.TurnCannon(-1);
+        }
+        if (action == "cannon-right")
+        {
+            controller.TurnCannon(1);
+        }
+    }
 
-	private void OnConnect(int device_id) {
-		if (AirConsole.instance.GetActivePlayerDeviceIds.Count == 0) {
+    private void OnConnect(int device_id)
+    {
+        _connectedDevices++;
+
+        if (AirConsole.instance.GetActivePlayerDeviceIds.Count == 0)
+        {
 			Debug.Log("Connected device:" + device_id + " and player number:" + AirConsole.instance.ConvertDeviceIdToPlayerNumber(device_id));
-			if (AirConsole.instance.GetControllerDeviceIds().Count >= 2) {
+			if (AirConsole.instance.GetControllerDeviceIds().Count >= _minPlayers && _connectedDevices % 2 == 0)
+            {
 				StartGame ();
 			} else {
 				//uiText.text = "NEED MORE PLAYERS";
@@ -60,37 +101,108 @@ public class ControllerTest : MonoBehaviour
 		}
 	}
 
-	private void OnDisconnect(int device_id) {
-		int active_player = AirConsole.instance.ConvertDeviceIdToPlayerNumber (device_id);
-		if (active_player != -1) {
-			if (AirConsole.instance.GetControllerDeviceIds ().Count >= 2) {
+	private void OnDisconnect(int device_id)
+    {
+        _connectedDevices--;
+
+        var playerCount = AirConsole.instance.GetControllerDeviceIds().Count;
+        int active_player = AirConsole.instance.ConvertDeviceIdToPlayerNumber (device_id);
+
+        Debug.Log("Device " + device_id + " has disconected. Players left: " + playerCount);
+
+        _controllersDictionary.Remove(device_id);
+
+		if (active_player != -1)
+        {
+			if (playerCount >= _minPlayers)
+            {
+                Debug.Log("There are enough players to continue");
 				StartGame ();
-			} else {
-				AirConsole.instance.SetActivePlayers (0);
-				//uiText.text = "PLAYER LEFT - NEED MORE PLAYERS";
+			} else
+            {
+                // No one is a player
+                Debug.Log("There are not enough players to continue. Setting players to none");
+                // Cleaning dictionary cache
+                _controllersDictionary.Clear();
+                // Destroy current tanks
+                foreach (var tank in _tankControllers)
+                {
+                    Destroy(tank.gameObject);
+                }
+                // Set active players to cero (no players)
+                AirConsole.instance.SetActivePlayers (0);
 			}
 		}
 	}
 
-	void StartGame () {
+	private void StartGame () {
 		Debug.Log("Start game");
+
 		AirConsole.instance.SetActivePlayers (_maxPlayers);
-		var controllerIds = AirConsole.instance.GetControllerDeviceIds();
-		var controller = (TankController)FindObjectOfType(typeof(TankController));
-		foreach(var device_id in controllerIds)
+
+        CreateTanks();
+
+		var controllerIds = AirConsole.instance.GetActivePlayerDeviceIds;		
+
+        Debug.Log("Starting game with " + controllerIds.Count);
+
+        for (int i = 0; i < controllerIds.Count; i++)
 		{
-			var playerId = AirConsole.instance.ConvertDeviceIdToPlayerNumber(device_id);
-			_controllers.Add(playerId, controller);
+            var controller = _tankControllers[i / 2];
+            var playerId = AirConsole.instance.ConvertDeviceIdToPlayerNumber(controllerIds[i]);
+			_controllersDictionary.Add(playerId, controller);
 			if (playerId % 2 == 0)
 			{
-				AirConsole.instance.Message(device_id, new {view = "player-a"});
+				AirConsole.instance.Message(controllerIds[i], new {view = "player-a"});
 			}
 			else
 			{
-				AirConsole.instance.Message(device_id, new {view = "player-b"});
+				AirConsole.instance.Message(controllerIds[i], new {view = "player-b"});
 			}
-			Debug.Log("Connected device:" + device_id + " and player number:" + AirConsole.instance.ConvertDeviceIdToPlayerNumber(device_id));
+			Debug.Log("Connected device:" + controllerIds[i] + " and player number:" + AirConsole.instance.ConvertDeviceIdToPlayerNumber(controllerIds[i]));
 		}
 	}
+
+    private void CreateTanks()
+    {
+        var controllerIds = AirConsole.instance.GetActivePlayerDeviceIds;
+        for (int i = 0; i < controllerIds.Count / 2; i++)
+        {
+            var tank = Instantiate(_tankPrefab);
+
+            var renderers = tank.GetComponentsInChildren<MeshRenderer>();
+            if (renderers.Length == 0)
+            {
+                Debug.LogWarning("There are no MeshRenderers in the gameObject");
+            }
+            foreach (var renderer in renderers)
+            {
+                var materials = renderer.materials;
+                materials[0] = _tankMaterials[i];
+                renderer.materials = materials;
+            }
+
+            var tankController = tank.GetComponent<TankController>();
+
+            var position = _spawnPoints[i].position;
+            var rotation = _spawnPoints[i].rotation;
+
+            tank.transform.position = position;
+            tank.transform.rotation = rotation;
+
+            _tankControllers.Add(tankController);
+
+            var target = new CinemachineTargetGroup.Target();
+            target.target = tank.transform;
+            target.weight = 1;
+            target.radius = 0;
+
+            _tankTargets.Add(target);
+
+            _targetGroup.m_Targets = _tankTargets.ToArray();
+
+            _mainCamera.m_Priority = 20;
+        }
+    }
 }
 
