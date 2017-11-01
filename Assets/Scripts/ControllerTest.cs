@@ -24,7 +24,12 @@ public class ControllerTest : MonoBehaviour
 
     private int _connectedDevices = 0;
 
-	private void OnEnable()
+    private void Awake()
+    {
+        _mainCamera.m_Priority = 10;
+    }
+
+    private void OnEnable()
     {
 		AirConsole.instance.onMessage += OnMessage;
 		AirConsole.instance.onConnect += OnConnect;
@@ -36,8 +41,6 @@ public class ControllerTest : MonoBehaviour
 		AirConsole.instance.onMessage -= OnMessage;
 		AirConsole.instance.onConnect -= OnConnect;
 		AirConsole.instance.onDisconnect -= OnDisconnect;
-
-        _mainCamera.m_Priority = 10;
     }
 
 	private void OnMessage(int device_id, JToken data)
