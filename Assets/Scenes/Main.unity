@@ -1067,6 +1067,11 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 991adb13298ffd544a3a5c8e5029cb46, type: 2}
   - {fileID: 2100000, guid: ffc1cbae6df55bf439d0172f893693e0, type: 2}
   - {fileID: 2100000, guid: e64fea2c7de06204bb8335737499f800, type: 2}
+  _tankColors:
+  - blue
+  - green
+  - red
+  - yellow
 --- !u!114 &913727127
 MonoBehaviour:
   m_ObjectHideFlags: 0

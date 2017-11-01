@@ -16,6 +16,7 @@ public class ControllerTest : MonoBehaviour
 
     [SerializeField] private Transform[] _spawnPoints;
     [SerializeField] private Material[] _tankMaterials;
+    [SerializeField] private string[] _tankColors;
 
     private List<TankController> _tankControllers = new List<TankController>();
     private List<CinemachineTargetGroup.Target> _tankTargets = new List<CinemachineTargetGroup.Target>();
@@ -127,6 +128,9 @@ public class ControllerTest : MonoBehaviour
                 Debug.Log("There are not enough players to continue. Setting players to none");
                 // Cleaning dictionary cache
                 _controllersDictionary.Clear();
+                // There is nothing to clean
+                if (_tankControllers.Count == 0) return ;
+
                 // Destroy current tanks
                 foreach (var tank in _tankControllers)
                 {
@@ -156,11 +160,11 @@ public class ControllerTest : MonoBehaviour
 			_controllersDictionary.Add(playerId, controller);
 			if (playerId % 2 == 0)
 			{
-				AirConsole.instance.Message(controllerIds[i], new {view = "player-a"});
+				AirConsole.instance.Message(controllerIds[i], new {view = "player-a", color = _tankColors[i/2]});
 			}
 			else
 			{
-				AirConsole.instance.Message(controllerIds[i], new {view = "player-b"});
+				AirConsole.instance.Message(controllerIds[i], new {view = "player-b", color = _tankColors[i/2]});
 			}
 			Debug.Log("Connected device:" + controllerIds[i] + " and player number:" + AirConsole.instance.ConvertDeviceIdToPlayerNumber(controllerIds[i]));
 		}

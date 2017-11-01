@@ -1,7 +1,7 @@
 var airconsole = new AirConsole({"orientation":"landscape"});
 
-var showView = function(id) {
-    var view = document.getElementById(id);
+var showView = function(view_id, color) {
+    var view = document.getElementById(view_id);
     var all_views = document.querySelectorAll('view');
 
     // Hide all containers
@@ -11,11 +11,16 @@ var showView = function(id) {
     
     // Show container
     view.style.display = 'inline-block';
+    view.style.backgroundColor = color;
 };
 
 airconsole.onMessage = function(from, data) {
     if (data.view) {
-        showView(data.view);
+        if (data.color) {
+            showView(data.view, data.color);
+        } else {
+            showView(data.view);
+        }
     }
     console.log("onMessage", from, data);
     
